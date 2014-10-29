@@ -9,16 +9,16 @@ from urls import *
 def make_parser():
     #ArgumentParser.add_subparsers
     parser = argparse.ArgumentParser(description='ingest twitter API calls: timeline')
-    subparser = parser.add_subparser(dest="command", help="available commands")
+    subparsers = parser.add_subparsers(dest="command", help="available commands")
 
     #timeline
-    timeline_parse = subparsers.add_subparser("timeline", help = "Show Twitter Timeline")
+    timeline_parse = subparsers.add_parser("timeline", help = "Show Twitter Timeline")
 
 
 def main():
     ##  main function
     parser = make_parser()
-    arguments = parse.parse_args(sys.argv[0])
+    arguments = parser.parse_args(sys.argv[1:])
     # Convert parsed arguments from Namespace to dictionary
     arguments = vars(arguments)
     command = arguments.pop("command")
