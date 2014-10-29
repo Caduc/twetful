@@ -17,6 +17,7 @@ def make_parser():
 
 def main():
     ##  main function
+    print ("arg that was entered is: " + sys.argv[1])
     parser = make_parser()
     arguments = parser.parse_args(sys.argv[1:])
     # Convert parsed arguments from Namespace to dictionary
@@ -24,13 +25,13 @@ def main():
     command = arguments.pop("command")
 
     auth = authorization.authorize()
-    
+
     if command == "TL":
         response = requests.get(TIMELINE_URL, auth=auth)
         print json.dumps(response.json(), indent=4)
 
     else:
-        print "geuss again sucka"
+        #print "geuss again sucka"
         return    
 
 
