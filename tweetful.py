@@ -13,6 +13,7 @@ def make_parser():
 
     #timeline
     timeline_parse = subparsers.add_parser("timeline", help = "Show Twitter Timeline")
+    return parser
 
 
 def main():
@@ -26,7 +27,7 @@ def main():
 
     auth = authorization.authorize()
 
-    if command == "TL":
+    if command == "timeline":
         response = requests.get(TIMELINE_URL, auth=auth)
         print json.dumps(response.json(), indent=4)
 
