@@ -13,6 +13,9 @@ def make_parser():
 
     #timeline
     timeline_parse = subparsers.add_parser("timeline", help = "Show Twitter Timeline")
+
+    #REVERSE GEO
+
     return parser
 
 
@@ -21,8 +24,10 @@ def main():
     print ("arg that was entered is: " + sys.argv[1])
     parser = make_parser()
     arguments = parser.parse_args(sys.argv[1:])
+    print arguments
     # Convert parsed arguments from Namespace to dictionary
     arguments = vars(arguments)
+    print arguments
     command = arguments.pop("command")
 
     auth = authorization.authorize()
@@ -30,6 +35,10 @@ def main():
     if command == "timeline":
         response = requests.get(TIMELINE_URL, auth=auth)
         print json.dumps(response.json(), indent=4)
+
+    #elif command == "nextthing":
+
+
 
     else:
         #print "geuss again sucka"
